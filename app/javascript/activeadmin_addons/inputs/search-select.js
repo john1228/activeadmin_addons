@@ -8,6 +8,7 @@ var initializer = function() {
   function setupSearchSelect(container) {
     $('.search-select-input, .search-select-filter-input, ajax-filter-input', container).each(function(i, el) {
       var element = $(el);
+      var model = element.data('model');
       var url = element.data('url');
       var depends = element.data('depends');
       var fields = element.data('fields');
