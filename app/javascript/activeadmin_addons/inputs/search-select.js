@@ -9,6 +9,7 @@ var initializer = function() {
     $('.search-select-input, .search-select-filter-input, ajax-filter-input', container).each(function(i, el) {
       var element = $(el);
       var url = element.data('url');
+      var depends = element.data('depends');
       var fields = element.data('fields');
       var predicate = element.data('predicate');
       var displayName = element.data('display-name');
@@ -45,6 +46,24 @@ var initializer = function() {
               },
             };
 
+            depends.forEach(depend => {
+              var dField = depend.split("-")[0];
+              var dPredicate = depend.split("-")[1];
+              if ("in" === dPredicate) {
+                var dElement = $("#" + model + "_" + dField);
+                if (dElement.length === 0) {
+                  var dValues = [];
+                  $("input[name='" + model + "[" + dField + "][]']").each(function () {
+                    dValues.push($(this).val());
+                  });
+                  query.q[depend] = dependValues;
+                } else {
+                  query.q[depend] = dElement.val();
+                }
+              } else {
+                query.q[dField + '_' + dPredicate] = $("#" + model + "_" + dField).val()
+              }
+            });
             return query;
           },
           processResults: function(data) {
