@@ -1,0 +1,20 @@
+@import 'select2';
+@import 'imports/jquery-datepicker';
+@import 'vendor/palette-color-picker';
+
+@import 'inputs/numeric-range-filter';
+@import 'inputs/date-time-picker-filter';
+@import 'inputs/color-picker';
+@import 'inputs/date-time-picker';
+@import 'inputs/select2';
+@import 'inputs/selected-list';
+@import 'addons/toggle_bool';
+@import 'addons/interactive_select_tag';
+
+$error-color: #932419;
+
+li.error {
+  .select2-selection {
+    border-color: $error-color;
+  }
+}
