@@ -35,7 +35,7 @@ module ActiveAdminAddons
     end
 
     def input_related_items
-      valid_object.send(tableize_method)
+      method_model.where(id: valid_object.send(valid_method))
     rescue NoMethodError
       raise "no association called #{tableize_method} on #{model_name} model"
     end
