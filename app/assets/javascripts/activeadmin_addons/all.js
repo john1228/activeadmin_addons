@@ -4,7 +4,6 @@
  */
 //= require select2.full
 //= require jquery.xdan.datetimepicker.full
-
 (function(factory) {
   typeof define === "function" && define.amd ? define([ "select2", "jquery-datetimepicker" ], factory) : factory();
 })(function() {
@@ -222,7 +221,9 @@
     function setupSearchSelect(container) {
       $(".search-select-input, .search-select-filter-input, ajax-filter-input", container).each(function(i, el) {
         var element = $(el);
+        var model = element.data("model");
         var url = element.data("url");
+        var depends = element.data("depends");
         var fields = element.data("fields");
         var predicate = element.data("predicate");
         var displayName = element.data("display-name");
@@ -230,6 +231,8 @@
         var responseRoot = element.data("response-root");
         var minimumInputLength = element.data("minimum-input-length");
         var order = element.data("order");
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        console.log(depends);
         var selectOptions = {
           width: width,
           minimumInputLength: minimumInputLength,
@@ -258,6 +261,28 @@
                   combinator: "and"
                 }
               };
+              console.log("====================");
+              console.log(depends);
+              depends.forEach(depend => {
+                console.log("------------------------");
+                console.log(depends);
+                var dField = depend.split("-")[0];
+                var dPredicate = depend.split("-")[1];
+                if ("in" === dPredicate) {
+                  var dElement = $("#" + model + "_" + dField);
+                  if (dElement.length === 0) {
+                    var dValues = [];
+                    $("input[name='" + model + "[" + dField + "][]']").each(function() {
+                      dValues.push($(this).val());
+                    });
+                    query.q[depend] = dependValues;
+                  } else {
+                    query.q[depend] = dElement.val();
+                  }
+                } else {
+                  query.q[dField + "_" + dPredicate] = $("#" + model + "_" + dField).val();
+                }
+              });
               return query;
             },
             processResults: function(data) {
