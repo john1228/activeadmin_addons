@@ -8,7 +8,7 @@ module ActiveAdminAddons
       array = collection.map(&:to_s) + selected_values
       array.sort.map do |value|
         option = { id: value, text: value }
-        option[:selected] = "selected" if selected_values.include?(value)
+        option[:selected] = 'selected' if selected_values.include?(value)
         option
       end.uniq
     end
@@ -33,7 +33,7 @@ module ActiveAdminAddons
 
         if selected_collection.include?(item)
           load_data_attr(:selected, value: option.dup, formatter: :to_json)
-          option[:selected] = "selected"
+          option[:selected] = 'selected'
         end
 
         option
@@ -68,10 +68,10 @@ module ActiveAdminAddons
 
     def selected_item
       @selected_item ||= begin
-                           input_association_value
-                         rescue NoMethodError
-                           selected_collection.first
-                         end
+        input_association_value
+      rescue NoMethodError
+        selected_collection.first
+      end
     end
 
     private
@@ -79,13 +79,13 @@ module ActiveAdminAddons
     def active_record_relation?(value)
       klass = value.class.name
       [
-        "ActiveRecord::Relation",
-        "ActiveRecord::Associations::CollectionProxy"
+        'ActiveRecord::Relation',
+        'ActiveRecord::Associations::CollectionProxy'
       ].include?(klass)
     end
 
     def valid_options
-      raise "missing @options hash" unless !!@options
+      raise 'missing @options hash' unless !!@options
 
       @options
     end

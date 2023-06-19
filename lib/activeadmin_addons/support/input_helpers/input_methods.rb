@@ -5,13 +5,13 @@ module ActiveAdminAddons
     end
 
     def valid_method
-      raise "invalid method given" if method.blank?
+      raise 'invalid method given' if method.blank?
 
       method
     end
 
     def valid_object
-      raise "blank object given" if @object.blank?
+      raise 'blank object given' if @object.blank?
 
       @object
     end
@@ -21,11 +21,11 @@ module ActiveAdminAddons
     end
 
     def association_name
-      valid_method.to_s.singularize.chomp("_id")
+      valid_method.to_s.singularize.chomp('_id')
     end
 
     def method_model
-      @options[:method_model] ||
+      @options[:method_model].classify.constantize ||
         object_class.reflect_on_association(association_name).try(:klass) ||
         association_name.classify.constantize
     end
