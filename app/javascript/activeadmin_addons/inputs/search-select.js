@@ -48,7 +48,7 @@ var initializer = function() {
             };
 
             depends.forEach(depend => {
-              var dField = depend.split("-")[0];
+              var dField = depend.split("_")[0];
               var dPredicate = depend.split("-")[1];
               var dElement = $("#" + model + "_" + dField);
               console.log(dElement);
