@@ -19,9 +19,6 @@ var initializer = function() {
       var minimumInputLength = element.data('minimum-input-length');
       var order = element.data('order');
 
-      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-      console.log(depends);
-
       var selectOptions = {
         width: width,
         minimumInputLength: minimumInputLength,
@@ -50,15 +47,13 @@ var initializer = function() {
               },
             };
 
-            console.log("====================");
-            console.log(depends);
             depends.forEach(depend => {
-              console.log("------------------------");
-              console.log(depend);
               var dField = depend.split("-")[0];
               var dPredicate = depend.split("-")[1];
+              var dElement = $("#" + model + "_" + dField);
+              console.log(dElement);
+
               if ("in" === dPredicate) {
-                var dElement = $("#" + model + "_" + dField);
                 if (dElement.length === 0) {
                   var dValues = [];
                   $("input[name='" + model + "[" + dField + "][]']").each(function () {
