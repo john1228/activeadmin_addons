@@ -265,7 +265,7 @@
               console.log(depends);
               depends.forEach(depend => {
                 console.log("------------------------");
-                console.log(depends);
+                console.log(depend);
                 var dField = depend.split("-")[0];
                 var dPredicate = depend.split("-")[1];
                 if ("in" === dPredicate) {
@@ -280,9 +280,10 @@
                     query.q[depend] = dElement.val();
                   }
                 } else {
-                  query.q[dField + "_" + dPredicate] = $("#" + model + "_" + dField).val();
+                  query.q[depend] = $("#" + model + "_" + dField).val();
                 }
               });
+              console.log(query);
               return query;
             },
             processResults: function(data) {
