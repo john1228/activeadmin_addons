@@ -1,3 +1,3 @@
 module ActiveadminAddons
-  VERSION = "1.10.82"
+  VERSION = "1.10.83"
 end
