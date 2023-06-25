@@ -25,7 +25,7 @@ module ActiveAdminAddons
     end
 
     def method_model
-      @options[:method_model].classify.constantize ||
+      @options[:method_model]&.classify&.constantize ||
         object_class.reflect_on_association(association_name).try(:klass) ||
         association_name.classify.constantize
     end
@@ -45,7 +45,7 @@ module ActiveAdminAddons
     end
 
     def input_association_value
-      @input_association_value ||= valid_object.send(association_name)
+      @input_association_value ||= method_model.find_by(id: valid_object.send(valid_method))
     end
 
     def translated_method
