@@ -35,7 +35,7 @@ module ActiveAdminAddons
     end
 
     def input_related_items
-      method_model.where(id: valid_object.send(valid_method))
+      method_model.where("#{@options.fetch(:method, :id)}": valid_object.send(valid_method))
     rescue NoMethodError
       raise "no association called #{tableize_method} on #{model_name} model"
     end
@@ -45,7 +45,7 @@ module ActiveAdminAddons
     end
 
     def input_association_value
-      @input_association_value ||= method_model.find_by(id: valid_object.send(valid_method))
+      @input_association_value ||= method_model.find_by("#{@options.fetch(:method, :id)}": valid_object.send(valid_method))
     end
 
     def translated_method
