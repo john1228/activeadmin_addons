@@ -44,7 +44,7 @@ module ActiveAdminAddons
       return unless item
 
       {
-        id: item.send((valid_options[:value] || :id)),
+        id: item.send((valid_options[:method] || :id)),
         text: item.send((valid_options[:display_name] || :name))
       }
     end
