@@ -587,7 +587,7 @@
           var data = event.params.data;
           var selectedItemsContainer = $("[id='" + prefix + "_selected_values']");
           var itemName = model + "[" + method + "][]";
-          var itemId = prefix + "_" + data.id;
+          var itemId = prefix + "_" + $.escapeSelector(data.id);
           if ($("#" + itemId).length > 0) {
             return;
           }
