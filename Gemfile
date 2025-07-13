@@ -12,7 +12,7 @@ gemspec
 
 # To use debugger
 # gem "debugger"
-gem "activeadmin"
+gem "activeadmin", ">= 3.1.0"
 gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"
 
-gem "webpacker", "~> 5.0", require: ENV["SPROCKETS"] != "true"
+gem "webpacker", "~> 5.4", ">= 5.4.0", require: ENV["SPROCKETS"] != "true"
