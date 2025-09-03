@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source "https://gems.ruby-china.com/"
 
 # Declare your gem's dependencies in activeadmin_ui_addons.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
